@@ -35,8 +35,8 @@ pipeline {
     
     stage('Copy the war'){
       steps {
-        sh 'sudo cp target/*.war /home/ans/jenkins/'
-	sh 'sudo chown -R jenkins:jenkins /home/ans/jenkins/'
+        sh 'sudo cp target/*.war /var/lib/jenkins/ansible'
+	sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/ansible/'
         }
       }     
 	
