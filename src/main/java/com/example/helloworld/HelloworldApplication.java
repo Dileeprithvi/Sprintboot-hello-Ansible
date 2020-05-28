@@ -16,7 +16,7 @@ public class HelloworldApplication {
 	@GetMapping("/hello")
 	public String helloWorld()
 	{
-		return "Helloworld working as expected now as of March 2nd 2020 v1 in QA Environment";
+		return "Helloworld working as expected";
 	}
 
 }
