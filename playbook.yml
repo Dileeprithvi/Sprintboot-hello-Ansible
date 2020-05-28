@@ -4,12 +4,8 @@
   become: true
   tasks:
     - name: Installing docker
-      yum:
-        name: docker
-        state: present # other states are present, absent, latest
+      shell: yum install docker -y 
     - name: Starting docker
-      service:
-        name: docker
-        state: started
+      shell: service docker start
     - name: Push and run the docker image
       shell: docker pull dileep95/firstdeploy:latest && docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:latest
