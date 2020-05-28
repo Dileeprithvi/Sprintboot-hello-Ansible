@@ -1,6 +1,6 @@
 ---
 - name: Playbook
-  hosts: hosts
+  hosts: all
   become: true
   tasks:
     - name: Installing docker
