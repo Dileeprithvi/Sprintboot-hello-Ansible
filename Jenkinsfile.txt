@@ -26,11 +26,12 @@ pipeline {
       }  
      stage('Docker Container'){
        steps{
-          sh "docker login -u dileep95 -p Docker@2019"
+       withCredentials([usernameColonPassword(credentialsId: 'dockercreds', variable: 'docker')]) {
           sh 'docker push dileep95/firstdeploy:$BUILD_NUMBER'
-          sh 'docker run -d -p 8090:8090 --name firstcont dileep95/firstdeploy:$BUILD_NUMBER'
+          sh 'docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:$BUILD_NUMBER'
         }
-      } 
+      }
+    }  
 }
 
 }
