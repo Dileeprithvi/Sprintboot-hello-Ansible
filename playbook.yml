@@ -3,9 +3,9 @@
   hosts: all
   become: true
   tasks:
-    - name: Installing docker
-      shell: yum install docker -y 
-    - name: Starting docker
-      shell: service docker start
-    - name: Push and run the docker image
-      shell: docker pull dileep95/firstdeploy:16 && docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:16
+    - name: copy the war
+      copy:
+      src: /target/*.war
+      dest: /opt/apache-tomcat-8.5.55/webapps/
+      
+
