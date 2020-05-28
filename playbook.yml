@@ -8,6 +8,6 @@
         src: /var/lib/jenkins/ansible/.
         dest: /opt/apache-tomcat-8.5.55/webapps
     - name: copy the war from remote location
-      command: mv /opt/apache-tomcat-8.5.55/webapps/ansible/*.war /opt/apache-tomcat-8.5.55/webapps/
+      command: mv /opt/apache-tomcat-8.5.55/webapps/ansible/ /opt/apache-tomcat-8.5.55/webapps/
       
 
