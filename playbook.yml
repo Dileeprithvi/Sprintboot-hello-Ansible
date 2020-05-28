@@ -5,9 +5,9 @@
   tasks:
     - name: copy the war
       copy:
-        src: /var/lib/jenkins/ansible/.
-        dest: /opt/apache-tomcat-8.5.55/webapps
-    - name: copy the war from remote location
-      command: mv /opt/apache-tomcat-8.5.55/webapps/ansible/ /opt/apache-tomcat-8.5.55/webapps/
+        src: /var/lib/jenkins/ansible/helloworld-0.0.1-SNAPSHOT.war
+        dest: /opt/apache-tomcat-8.5.55/webapps/
+   # - name: copy the war from remote location
+    #  command: mv /opt/apache-tomcat-8.5.55/webapps/ansible/ /opt/apache-tomcat-8.5.55/webapps/
       
 
