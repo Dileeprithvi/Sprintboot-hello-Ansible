@@ -7,5 +7,10 @@
       copy:
         src: /var/lib/jenkins/ansible/.
         dest: /opt/apache-tomcat-8.5.55/webapps
+   - name: copy the war from remote location
+     fetch:
+        src: /opt/apache-tomcat-8.5.55/webapps/ansible/.
+        dest: /opt/apache-tomcat-8.5.55/webapps
+        remote_src: yes
       
 
