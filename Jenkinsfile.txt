@@ -1,81 +1,36 @@
 def mvn
-
- 
-
 pipeline {
-
-   agent {label 'master' }
-
+  agent { label 'master' }
     tools {
-
-        maven 'Maven'
-
-        jdk 'JAVA_HOME'
-
+      maven 'Maven'
+      jdk 'JAVA_HOME'
     }
-
- 
-
-   stages {
-
-      stage('Git Checkout') {
-
-         steps {
-
-            git credentialsId: 'Git-Private', url: 'https://github.com/Bakkiya8/SampleHelloworld'
-
-         }
-
+  stages {
+    stage('Git Checkout') {
+      steps {
+		      git credentialsId: 'git_creds_dileep', url: 'https://github.com/Dileeprithvi/Sprintboot-hello-Ansible.git'
       }
-
-       
-
-        stage ('Maven Build') {
-
-            steps {
-
-                                                script {
-
-                                               mvn= tool (name: 'Maven', type: 'maven') + '/bin/mvn'
-
-                                               }
-
-                                                    sh "${mvn} clean install"
-
-                                                   
-
-               }
-
-       
-
-   }
-
-       stage('Build Docker Image'){
-
-           steps{
-
+    }
+    stage ('Maven Build') {
+      steps {
+        script {
+          mvn= tool (name: 'Maven', type: 'maven') + '/bin/mvn'
+        sh "${mvn} clean package"
+        }
+      }
+    }
+    stage('Build Docker Image'){
+      steps {
         sh 'docker build -t dileep95/firstdeploy:$BUILD_NUMBER .'
-
-    }
-
-       }
-
-      
-
-        stage('Docker Container'){
-
-           steps{
-
+        }
+      }  
+     stage('Docker Container'){
+       steps{
           sh "docker login -u dileep95 -p Docker@2019"
-
-        sh 'docker push dileep95/firstdeploy:$BUILD_NUMBER'
-
-        sh 'docker run -d -p 8090:8090 --name firstcont dileep95/firstdeploy:$BUILD_NUMBER'
-
-    }
-
-       }  
-
+          sh 'docker push dileep95/firstdeploy:$BUILD_NUMBER'
+          sh 'docker run -d -p 8090:8090 --name firstcont dileep95/firstdeploy:$BUILD_NUMBER'
+        }
+      } 
 }
 
 }
