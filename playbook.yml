@@ -5,7 +5,7 @@
   tasks:
     - name: copy the war
       copy:
-        src: /home/ans/jenkins/*.war
+        src: /home/ans/jenkins/
         dest: /opt/apache-tomcat-8.5.55/webapps/
       
 
