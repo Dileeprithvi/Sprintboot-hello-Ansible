@@ -5,7 +5,7 @@
   tasks:
     - name: copy the war
       copy:
-        src: /var/lib/jenkins/workspace/Pipeline/target/*.war
+        src: /var/lib/jenkins/ansible/.
         dest: /opt/apache-tomcat-8.5.55/webapps
       
 
