@@ -5,7 +5,7 @@
   tasks:
     - name: copy the war
       copy:
-        src: /home/ans/jenkins/helloworld-0.0.1-SNAPSHOT.war
+        src: /home/ans/a.txt
         dest: /opt/apache-tomcat-8.5.55/webapps/
       
 
