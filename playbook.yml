@@ -8,4 +8,4 @@
     - name: Starting docker
       shell: service docker start
     - name: Push and run the docker image
-      shell: docker pull dileep95/firstdeploy:latest && docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:latest
+      shell: docker pull dileep95/firstdeploy:16 && docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:16
