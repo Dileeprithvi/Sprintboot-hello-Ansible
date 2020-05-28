@@ -27,7 +27,7 @@ pipeline {
      stage('Docker Container'){
        steps{
        withCredentials([usernamePassword(credentialsId: 'dockercreds', passwordVariable: 'docker_passwd', usernameVariable: 'docker_username')]) {
-       	  sh 'docker login -u docker_username -p docker_passwd'
+       	  sh 'docker login -u ${docker_username} -p ${docker_passwd}'
           sh 'docker push dileep95/firstdeploy:$BUILD_NUMBER'
           sh 'docker run -d -p 8050:8050 --name firstcontainer dileep95/firstdeploy:$BUILD_NUMBER'
         }
