@@ -1,0 +1,81 @@
+def mvn
+
+ 
+
+pipeline {
+
+   agent {label 'master' }
+
+    tools {
+
+        maven 'Maven'
+
+        jdk 'JAVA_HOME'
+
+    }
+
+ 
+
+   stages {
+
+      stage('Git Checkout') {
+
+         steps {
+
+            git credentialsId: 'Git-Private', url: 'https://github.com/Bakkiya8/SampleHelloworld'
+
+         }
+
+      }
+
+       
+
+        stage ('Maven Build') {
+
+            steps {
+
+                                                script {
+
+                                               mvn= tool (name: 'Maven', type: 'maven') + '/bin/mvn'
+
+                                               }
+
+                                                    sh "${mvn} clean install"
+
+                                                   
+
+               }
+
+       
+
+   }
+
+       stage('Build Docker Image'){
+
+           steps{
+
+        sh 'docker build -t dileep95/firstdeploy:$BUILD_NUMBER .'
+
+    }
+
+       }
+
+      
+
+        stage('Docker Container'){
+
+           steps{
+
+          sh "docker login -u dileep95 -p Docker@2019"
+
+        sh 'docker push dileep95/firstdeploy:$BUILD_NUMBER'
+
+        sh 'docker run -d -p 8090:8090 --name firstcont dileep95/firstdeploy:$BUILD_NUMBER'
+
+    }
+
+       }  
+
+}
+
+}
